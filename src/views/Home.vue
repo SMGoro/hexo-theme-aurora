@@ -78,7 +78,7 @@
       <div>
         <Sidebar>
           <Profile :author="mainAuthor" />
-          <RecentComment v-if="recentCommentEnable" />
+          <RecentComment />
           <TagBox />
         </Sidebar>
       </div>
@@ -227,15 +227,6 @@ export default defineComponent({
       mainAuthor: computed(() => {
         let author = appStore.themeConfig.site.author.toLocaleLowerCase()
         return author.replace(/[\s]+/g, '-')
-      }),
-      recentCommentEnable: computed(() => {
-        return (
-          (appStore.themeConfig.plugins.gitalk.enable &&
-            appStore.themeConfig.plugins.gitalk.recentComment) ||
-          (!appStore.themeConfig.plugins.gitalk.enable &&
-            appStore.themeConfig.plugins.valine.enable &&
-            appStore.themeConfig.plugins.valine.recentComment)
-        )
       }),
       expanderClass,
       tabClass,
